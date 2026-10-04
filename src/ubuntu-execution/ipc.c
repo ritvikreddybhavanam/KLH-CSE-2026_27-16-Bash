@@ -95,7 +95,9 @@ int demo_fifo(void) {
             perror("writer open");
             _exit(1);
         }
-        write(fd, message, strlen(message));
+        if (write(fd, message, strlen(message)) < 0) {
+            perror("writer write");
+        }
         close(fd);
         _exit(0);
     }

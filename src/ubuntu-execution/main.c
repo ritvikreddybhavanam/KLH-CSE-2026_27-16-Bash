@@ -145,7 +145,9 @@ int main(int argc, char *argv[]) {
             case 5: {
                 char query[128];
                 printf("Enter PID or process name to search: ");
-                scanf("%127s", query);
+                if (scanf("%127s", query) != 1) {
+                    query[0] = '\0';
+                }
                 monitor_step(&state);
                 ProcessList filtered;
                 search_process_list(&state.current_procs, &filtered, query);

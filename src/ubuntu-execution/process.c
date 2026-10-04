@@ -360,7 +360,7 @@ int read_process_details(int pid, double total_ram_gb, ProcessDetails *details) 
     details->pid = basic_info.pid;
     details->ppid = basic_info.ppid;
     details->state = basic_info.state;
-    strncpy(details->name, basic_info.name, sizeof(details->name) - 1);
+    snprintf(details->name, sizeof(details->name), "%s", basic_info.name);
     read_process_memory(pid, total_ram_gb, &details->memory_usage_mb, &details->memory_pct);
 
     // Read cmdline
